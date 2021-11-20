@@ -1,11 +1,16 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
 import "./App.css";
-
+import { RootState } from ".";
 import AddVocabButton from "./components/AddVocabButton/AddVocabButton";
-
-import Vocabs from "./constants/Vocabulary.json";
+import { VocabsListInterface } from "./store/reducers/VocabsData";
 
 function App() {
+	const Vocabs = useSelector<RootState, VocabsListInterface>(
+		(state) => state.VocabsData.VocabsList
+	);
+
 	return (
 		<div className="App">
 			<AddVocabButton />
