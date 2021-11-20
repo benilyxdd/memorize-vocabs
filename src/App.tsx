@@ -7,15 +7,15 @@ import AddVocabButton from "./components/AddVocabButton/AddVocabButton";
 import { VocabsListInterface } from "./store/reducers/VocabsData";
 
 function App() {
-	const Vocabs = useSelector<RootState, VocabsListInterface>(
+	const VocabsList = useSelector<RootState, VocabsListInterface>(
 		(state) => state.VocabsData.VocabsList
 	);
 
 	return (
 		<div className="App">
 			<AddVocabButton />
-			{Vocabs &&
-				Vocabs.map((vocab) => {
+			{VocabsList &&
+				VocabsList.map((vocab) => {
 					return (
 						<div key={vocab.word}>
 							<h1>{vocab.word}</h1>
