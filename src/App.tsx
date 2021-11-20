@@ -9,7 +9,7 @@ function App() {
 			{Vocabs &&
 				Vocabs.map((vocab) => {
 					return (
-						<div>
+						<div key={vocab.word}>
 							<h1>{vocab.word}</h1>
 							<h2>{vocab.meaning}</h2>
 							<h2>{vocab.example}</h2>
