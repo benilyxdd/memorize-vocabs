@@ -17,6 +17,7 @@ word map: <br>
   {
     word: string,
     meaning: string,
+	example: string,
     proficiency: number
   },
   ...
