@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Button, Stack } from "@mui/material";
+import { Button, Stack, TextField } from "@mui/material";
 
 import "./VocabsLearnView.css";
 import { RootState } from "../..";
@@ -55,6 +55,8 @@ const VocabsLearnView = () => {
 	const [numberOfQuestions, setNumberOfQuestions] = useState<number | null>(
 		null
 	);
+	const [customNumberOfQuestions, setCustomNumberOfQuestions] =
+		useState<string>("");
 
 	const randomizeVocab = (): void => {
 		const randomNumber = getRandomNumber(
@@ -86,38 +88,55 @@ const VocabsLearnView = () => {
 			{!numberOfQuestions && (
 				<>
 					<h1>Select the number of questions you want to study</h1>
-					{VocabsList.length >= 5 && (
-						<Button
-							variant="contained"
-							onClick={() => setNumberOfQuestions(5)}
-						>
-							5
-						</Button>
-					)}
-					{VocabsList.length >= 10 && (
-						<Button
-							variant="contained"
-							onClick={() => setNumberOfQuestions(10)}
-						>
-							10
-						</Button>
-					)}
-					{VocabsList.length >= 15 && (
-						<Button
-							variant="contained"
-							onClick={() => setNumberOfQuestions(15)}
-						>
-							15
-						</Button>
-					)}
-					{VocabsList.length >= 20 && (
-						<Button
-							variant="contained"
-							onClick={() => setNumberOfQuestions(20)}
-						>
-							20
-						</Button>
-					)}
+					<Stack direction="row" spacing={2}>
+						{VocabsList.length >= 5 && (
+							<Button
+								variant="contained"
+								onClick={() => setNumberOfQuestions(5)}
+							>
+								5
+							</Button>
+						)}
+						{VocabsList.length >= 10 && (
+							<Button
+								variant="contained"
+								onClick={() => setNumberOfQuestions(10)}
+							>
+								10
+							</Button>
+						)}
+						{VocabsList.length >= 15 && (
+							<Button
+								variant="contained"
+								onClick={() => setNumberOfQuestions(15)}
+							>
+								15
+							</Button>
+						)}
+						{VocabsList.length >= 20 && (
+							<Button
+								variant="contained"
+								onClick={() => setNumberOfQuestions(20)}
+							>
+								20
+							</Button>
+						)}
+						<TextField
+							variant="outlined"
+							label="Enter yourself"
+							type={"number"}
+							required
+							value={customNumberOfQuestions}
+							onChange={(event) => {
+								const numberString = event.target.value;
+								if (parseInt(numberString) < 0) {
+									setCustomNumberOfQuestions("0");
+									return;
+								}
+								setCustomNumberOfQuestions(numberString);
+							}}
+						/>
+					</Stack>
 				</>
 			)}
 			{!finished && numberOfQuestions && (
