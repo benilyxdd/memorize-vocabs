@@ -2,5 +2,5 @@ export interface VocabularyInterface {
 	word: string;
 	meaning: string;
 	example: string;
-	proficiency: number;
+	proficiency: number; // default = 0
 }
