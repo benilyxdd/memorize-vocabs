@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Dialog, DialogTitle, TextField, Stack, Button } from "@mui/material";
+import { useDispatch } from "react-redux";
 
 import "./VocabsListAddDialog.css";
+import { addVocab } from "../../store/actions/VocabsData";
+import { VocabularyInterface } from "../../constants/VocabularyInterface";
 
 interface VocabsListAddDialogProps {
 	open: boolean;
@@ -9,9 +12,22 @@ interface VocabsListAddDialogProps {
 }
 
 const VocabsListAddDialog = ({ open, openf }: VocabsListAddDialogProps) => {
+	const dispatch = useDispatch();
+
 	const [newWordInput, setNewWordInput] = useState<string>("");
 	const [newMeaningInput, setNewMeaningInput] = useState<string>("");
 	const [newExampleInput, setNewExmapleInput] = useState<string>("");
+
+	const addButtonHandler = () => {
+		const newWord: VocabularyInterface = {
+			word: newWordInput,
+			meaning: newMeaningInput,
+			example: newExampleInput,
+			proficiency: 0,
+		};
+		dispatch(addVocab(newWord));
+		openf(false);
+	};
 
 	return (
 		<Dialog open={open}>
@@ -57,13 +73,7 @@ const VocabsListAddDialog = ({ open, openf }: VocabsListAddDialogProps) => {
 				>
 					Reset
 				</Button>
-				<Button
-					variant="contained"
-					onClick={() => {
-						console.log("this line going to dispatch an action");
-						openf(false);
-					}}
-				>
+				<Button variant="contained" onClick={addButtonHandler}>
 					Save
 				</Button>
 			</Stack>
