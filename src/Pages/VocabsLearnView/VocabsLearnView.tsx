@@ -85,6 +85,7 @@ const VocabsLearnView = () => {
 		<>
 			{!numberOfQuestions && (
 				<>
+					<h1>Select the number of questions you want to study</h1>
 					{VocabsList.length >= 5 && (
 						<Button
 							variant="contained"
