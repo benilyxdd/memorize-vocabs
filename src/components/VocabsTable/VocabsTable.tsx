@@ -22,19 +22,17 @@ const VocabsTable = ({ vocabsList }: VocabsTabelProps) => {
 			<Table>
 				<TableHead>
 					<TableRow>
-						<TableCell align="right">Phrase / Word</TableCell>
-						<TableCell align="right">Meaning</TableCell>
-						<TableCell align="right">Proficiency</TableCell>
+						<TableCell>Phrase / Word</TableCell>
+						<TableCell>Meaning</TableCell>
+						<TableCell>Proficiency</TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
 					{vocabsList.map((vocab) => (
 						<TableRow key={vocab.word}>
-							<TableCell align="right">{vocab.word}</TableCell>
-							<TableCell align="right">{vocab.meaning}</TableCell>
-							<TableCell align="right">
-								{vocab.proficiency}
-							</TableCell>
+							<TableCell>{vocab.word}</TableCell>
+							<TableCell>{vocab.meaning}</TableCell>
+							<TableCell>{vocab.proficiency}</TableCell>
 						</TableRow>
 					))}
 				</TableBody>
