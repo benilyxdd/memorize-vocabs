@@ -9,6 +9,7 @@ import { VocabularyInterface } from "../../constants/VocabularyInterface";
 
 const getRandomNumber = (
 	selectedNumber: Array<number>,
+	randomArray: Array<number>,
 	maxReroll: number | null,
 	upperbound: number,
 	lowerbound: number = 0
@@ -23,7 +24,7 @@ const getRandomNumber = (
 		const newRandomNumber = Math.floor(
 			Math.random() * (upperbound - lowerbound) + lowerbound
 		);
-		if (!selectedNumber.includes(newRandomNumber)) {
+		if (!selectedNumber.includes(randomArray[newRandomNumber])) {
 			return newRandomNumber;
 		}
 	}
@@ -68,13 +69,14 @@ const VocabsLearnView = () => {
 
 		const randomNumber = getRandomNumber(
 			selectedIndex,
+			randomList,
 			numberOfQuestions,
 			randomList.length - 1
 		);
 		if (randomNumber === null) {
 			throw new Error("no more question ");
 		}
-		setSelectedIndex([...selectedIndex, randomNumber]);
+		setSelectedIndex([...selectedIndex, randomList[randomNumber]]);
 		setCurrentVocab(VocabsList[randomList[randomNumber]]);
 		setAnswerShowed(false);
 		setGoodBadSelected(false);
