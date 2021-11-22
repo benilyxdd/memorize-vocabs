@@ -59,7 +59,6 @@ const VocabsLearnView = () => {
 		useState<string>("");
 
 	const randomizeVocab = (): void => {
-		console.log(selectedIndex.length, numberOfQuestions);
 		if (selectedIndex.length === numberOfQuestions) {
 			setFinished(true);
 			setNumberOfQuestions(null);
@@ -70,13 +69,13 @@ const VocabsLearnView = () => {
 		const randomNumber = getRandomNumber(
 			selectedIndex,
 			numberOfQuestions,
-			VocabsList.length - 1
+			randomList.length - 1
 		);
 		if (randomNumber === null) {
 			throw new Error("no more question ");
 		}
 		setSelectedIndex([...selectedIndex, randomNumber]);
-		setCurrentVocab(VocabsList[randomNumber]);
+		setCurrentVocab(VocabsList[randomList[randomNumber]]);
 		setAnswerShowed(false);
 		setGoodBadSelected(false);
 	};
