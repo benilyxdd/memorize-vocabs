@@ -7,16 +7,21 @@ import {
 	TableHead,
 	TableContainer,
 	Paper,
+	IconButton,
 } from "@mui/material";
+import { Delete } from "@mui/icons-material";
+import { useDispatch } from "react-redux";
 
 import "./VocabsTable.css";
 import { VocabularyInterface } from "../../constants/VocabularyInterface";
+import { removeVocab } from "../../store/actions/VocabsData";
 
 type VocabsTabelProps = {
 	vocabsList: Array<VocabularyInterface>;
 };
 
 const VocabsTable = ({ vocabsList }: VocabsTabelProps) => {
+	const dispatch = useDispatch();
 	return (
 		<TableContainer component={Paper}>
 			<Table>
@@ -25,6 +30,7 @@ const VocabsTable = ({ vocabsList }: VocabsTabelProps) => {
 						<TableCell>Phrase / Word</TableCell>
 						<TableCell>Meaning</TableCell>
 						<TableCell>Proficiency</TableCell>
+						<TableCell>Remove</TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
@@ -33,6 +39,16 @@ const VocabsTable = ({ vocabsList }: VocabsTabelProps) => {
 							<TableCell>{vocab.word}</TableCell>
 							<TableCell>{vocab.meaning}</TableCell>
 							<TableCell>{vocab.proficiency}</TableCell>
+							<TableCell>
+								<IconButton
+									aria-label="delete"
+									onClick={() => {
+										dispatch(removeVocab(vocab.word));
+									}}
+								>
+									<Delete />
+								</IconButton>
+							</TableCell>
 						</TableRow>
 					))}
 				</TableBody>
