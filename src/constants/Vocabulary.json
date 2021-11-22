@@ -4,5 +4,47 @@
 		"meaning": "in addition to someone or something else",
 		"example": "Now we’ve got hospital bills along with our usual expenses.",
 		"proficiency": 0
+	},
+	{
+		"word": "likewise",
+		"meaning": "in the same way",
+		"example": "Just water these plants twice a week, and likewise the ones in the bedroom.",
+		"proficiency": 0
+	},
+	{
+		"word": "correspondingly",
+		"meaning": "in a way that is similar to, connected with, or caused by something else",
+		"example": "Life in the city is more expensive, but salaries are correspondingly higher.",
+		"proficiency": 0
+	},
+	{
+		"word": "deplete",
+		"meaning": "to reduce something in size or amount, especially supplies of energy, money, etc.",
+		"example": "If we continue to deplete the earth's natural resources, we will cause serious damage to the environment.",
+		"proficiency": 0
+	},
+	{
+		"word": "vary",
+		"meaning": "If things of the same type vary, they are different from each other, and if you vary them, you cause them to be different from each other",
+		"example": "Salary scales vary between states/from state to state/according to state/with each state.",
+		"proficiency": 0
+	},
+	{
+		"word": "swell",
+		"meaning": "to become larger and rounder than usual; to (cause to) increase in size or amount",
+		"example": "It was obvious she had broken her toe, because it immediately started to swell (up).",
+		"proficiency": 0
+	},
+	{
+		"word": "renovate",
+		"meaning": "to repair and improve something, especially a building",
+		"example": "He renovates old houses and sells them at a profit.",
+		"proficiency": 0
+	},
+	{
+		"word": "deteriorate",
+		"meaning": "to become worse",
+		"example": "She was taken into hospital last week when her condition suddenly deteriorated.",
+		"proficiency": 0
 	}
 ]
