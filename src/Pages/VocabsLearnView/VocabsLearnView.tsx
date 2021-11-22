@@ -59,23 +59,31 @@ const VocabsLearnView = () => {
 		useState<string>("");
 
 	const randomizeVocab = (): void => {
+		console.log(selectedIndex.length, numberOfQuestions);
+		if (selectedIndex.length === numberOfQuestions) {
+			setFinished(true);
+			setNumberOfQuestions(null);
+			setSelectedIndex([]);
+			return;
+		}
+
 		const randomNumber = getRandomNumber(
 			selectedIndex,
 			numberOfQuestions,
 			VocabsList.length - 1
 		);
 		if (randomNumber === null) {
-			if (selectedIndex.length === numberOfQuestions) {
-				setFinished(true);
-				return;
-			} else {
-				throw new Error("no more question ");
-			}
+			throw new Error("no more question ");
 		}
 		setSelectedIndex([...selectedIndex, randomNumber]);
 		setCurrentVocab(VocabsList[randomNumber]);
 		setAnswerShowed(false);
 		setGoodBadSelected(false);
+	};
+
+	const restart = (): void => {
+		setFinished(false);
+		randomizeVocab();
 	};
 
 	// get very first vocab when user clicked on the page
@@ -85,9 +93,10 @@ const VocabsLearnView = () => {
 
 	return (
 		<>
-			{!numberOfQuestions && (
+			{!numberOfQuestions && !finished && (
 				<>
 					<h1>Select the number of questions you want to study</h1>
+					<h2>Max: {VocabsList.length}</h2>
 					<Stack direction="row" spacing={2}>
 						{VocabsList.length >= 5 && (
 							<Button
@@ -136,6 +145,32 @@ const VocabsLearnView = () => {
 								setCustomNumberOfQuestions(numberString);
 							}}
 						/>
+						<Button
+							variant="contained"
+							color="success"
+							onClick={() => {
+								if (!customNumberOfQuestions) {
+									alert(
+										"Enter or select a number of questions."
+									);
+									return;
+								}
+								if (
+									VocabsList.length <
+									parseInt(customNumberOfQuestions)
+								) {
+									alert(
+										"You cannot select more questions than your list"
+									);
+									return;
+								}
+								setNumberOfQuestions(
+									parseInt(customNumberOfQuestions)
+								);
+							}}
+						>
+							Submit
+						</Button>
 					</Stack>
 				</>
 			)}
@@ -187,7 +222,14 @@ const VocabsLearnView = () => {
 					)}
 				</>
 			)}
-			{finished && <h1>You have finished this round.</h1>}
+			{finished && (
+				<>
+					<h1>You have finished this round.</h1>
+					<Button variant="contained" onClick={restart}>
+						Try Again
+					</Button>
+				</>
+			)}
 		</>
 	);
 };
