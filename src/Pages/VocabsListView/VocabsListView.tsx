@@ -1,11 +1,18 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import "./VocabsListView.css";
+import VocabsTable from "../../components/VocabsTable/VocabsTable";
+import { RootState } from "../..";
+import { VocabsListInterface } from "../../store/reducers/VocabsData";
 
 const VocabsListView = () => {
+	const VocabsList = useSelector<RootState, VocabsListInterface>(
+		(state) => state.VocabsData.VocabsList
+	);
 	return (
 		<div>
-			<h1>This is Vocab list view</h1>
+			<VocabsTable vocabsList={VocabsList} />
 		</div>
 	);
 };
