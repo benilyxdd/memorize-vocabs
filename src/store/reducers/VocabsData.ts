@@ -27,7 +27,7 @@ const VocabsDataReducer = (
 			return {
 				...state,
 				VocabsList: state.VocabsList.filter(
-					(vocab) => vocab.word === action.payload.word
+					(vocab) => vocab.word !== action.payload.word
 				),
 			};
 		default:
