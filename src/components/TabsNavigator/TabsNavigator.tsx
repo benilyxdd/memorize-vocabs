@@ -28,6 +28,13 @@ function TabPanel({ children, value, index }: TabPanelProps) {
 	);
 }
 
+function a11yProps(index: number) {
+	return {
+		id: `tabsNavigator-tab-${index}`,
+		"aria-controls": `tabsNavigator-tabpanel-${index}`,
+	};
+}
+
 const TabsNavigator = () => {
 	const [value, setValue] = useState(0);
 
@@ -38,9 +45,13 @@ const TabsNavigator = () => {
 	return (
 		<Box style={{ display: "flex" }}>
 			<Box>
-				<Tabs orientation="vertical" onChange={onTabChange}>
-					<Tab label="Study"></Tab>
-					<Tab label="List"></Tab>
+				<Tabs
+					orientation="vertical"
+					onChange={onTabChange}
+					value={value}
+				>
+					<Tab label="Study" {...a11yProps(0)}></Tab>
+					<Tab label="List" {...a11yProps(1)}></Tab>
 				</Tabs>
 			</Box>
 
