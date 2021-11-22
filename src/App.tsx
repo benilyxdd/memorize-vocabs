@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 
 import "./App.css";
 import { RootState } from ".";
-import AddVocabButton from "./components/AddVocabButton/AddVocabButton";
 import { VocabsListInterface } from "./store/reducers/VocabsData";
 
 function App() {
@@ -13,7 +12,6 @@ function App() {
 
 	return (
 		<div className="App">
-			<AddVocabButton />
 			{VocabsList &&
 				VocabsList.map((vocab) => {
 					return (
