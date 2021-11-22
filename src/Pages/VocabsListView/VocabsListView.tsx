@@ -11,9 +11,9 @@ const VocabsListView = () => {
 		(state) => state.VocabsData.VocabsList
 	);
 	return (
-		<div>
+		<>
 			<VocabsTable vocabsList={VocabsList} />
-		</div>
+		</>
 	);
 };
 
