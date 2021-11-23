@@ -1,24 +1,23 @@
 import { VocabularyInterface } from '../../constants/VocabularyInterface';
 
-export interface actionInterface {
+interface actionInterface {
 	type: string;
 	payload: {};
 }
 
-export interface addVocabInterface extends Omit<actionInterface, 'payload'> {
+interface addVocabInterface extends Omit<actionInterface, 'payload'> {
 	payload: {
 		vocab: VocabularyInterface;
 	};
 }
 
-export interface removeVocabInterface extends Omit<actionInterface, 'payload'> {
+interface removeVocabInterface extends Omit<actionInterface, 'payload'> {
 	payload: {
 		word: string;
 	};
 }
 
-export interface modifyProficiencyInterface
-	extends Omit<actionInterface, 'payload'> {
+interface modifyProficiencyInterface extends Omit<actionInterface, 'payload'> {
 	payload: {
 		word: string;
 		plus: boolean;
