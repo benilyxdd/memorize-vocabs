@@ -18,6 +18,12 @@ const VocabsListAddDialog = ({ open, openf }: VocabsListAddDialogProps) => {
 	const [newMeaningInput, setNewMeaningInput] = useState<string>("");
 	const [newExampleInput, setNewExmapleInput] = useState<string>("");
 
+	const resetInput = () => {
+		setNewExmapleInput("");
+		setNewMeaningInput("");
+		setNewWordInput("");
+	};
+
 	const addButtonHandler = () => {
 		const newWord: VocabularyInterface = {
 			word: newWordInput,
@@ -27,6 +33,7 @@ const VocabsListAddDialog = ({ open, openf }: VocabsListAddDialogProps) => {
 		};
 		dispatch(addVocab(newWord));
 		openf(false);
+		resetInput();
 	};
 
 	return (
@@ -62,15 +69,7 @@ const VocabsListAddDialog = ({ open, openf }: VocabsListAddDialogProps) => {
 				<Button variant="contained" onClick={() => openf(false)}>
 					Close
 				</Button>
-				<Button
-					variant="contained"
-					onClick={() => {
-						setNewExmapleInput("");
-						setNewMeaningInput("");
-						setNewWordInput("");
-					}}
-					color="error"
-				>
+				<Button variant="contained" onClick={resetInput} color="error">
 					Reset
 				</Button>
 				<Button variant="contained" onClick={addButtonHandler}>
