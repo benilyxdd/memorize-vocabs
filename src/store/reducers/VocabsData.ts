@@ -34,18 +34,24 @@ const VocabsDataReducer = (
 				),
 			};
 		case MODIFY_PROFICIENCY:
+			const position = state.VocabsList.indexOf(action.payload.word);
+			const proficiency = state.VocabsList[position].proficiency;
+			if (proficiency <= -5 || proficiency >= 5) {
+				return state;
+			}
+
 			return {
 				...state,
-				VocabsList: state.VocabsList.map((vocab) =>
-					vocab.word === action.payload.word
+				VocabsList: state.VocabsList.map((vocab) => {
+					return vocab.word === action.payload.word.word
 						? {
 								...vocab,
 								proficiency:
 									vocab.proficiency +
 									(action.payload.plus ? 1 : -1),
 						  }
-						: vocab
-				),
+						: vocab;
+				}),
 			};
 		default:
 			return state;

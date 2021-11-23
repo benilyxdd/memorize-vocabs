@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Button, Stack, TextField } from "@mui/material";
 
 import "./VocabsLearnView.css";
 import { RootState } from "../..";
 import { VocabsListInterface } from "../../store/reducers/VocabsData";
 import { VocabularyInterface } from "../../constants/VocabularyInterface";
+import { modifyProficiency } from "../../store/actions/VocabsData";
 
 const getRandomNumber = (
 	selectedNumber: Array<number>,
@@ -31,6 +32,7 @@ const getRandomNumber = (
 };
 
 const VocabsLearnView = () => {
+	const dispatch = useDispatch();
 	const VocabsList = useSelector<RootState, VocabsListInterface>(
 		(state) => state.VocabsData.VocabsList
 	);
@@ -47,8 +49,12 @@ const VocabsLearnView = () => {
 	const [selectedIndex, setSelectedIndex] = useState<Array<number>>([]);
 
 	// this will  only be null when initialize
-	const [currentVocab, setCurrentVocab] =
-		useState<VocabularyInterface | null>(null);
+	const [currentVocab, setCurrentVocab] = useState<VocabularyInterface>({
+		word: "",
+		meaning: "",
+		example: "",
+		proficiency: 0,
+	});
 
 	const [answerShowed, setAnswerShowed] = useState<boolean>(false);
 	const [goodBadSelected, setGoodBadSelected] = useState<boolean>(false);
@@ -189,14 +195,24 @@ const VocabsLearnView = () => {
 						<Stack direction="row" spacing={2}>
 							<Button
 								variant="contained"
-								onClick={() => setGoodBadSelected(true)}
+								onClick={() => {
+									setGoodBadSelected(true);
+									dispatch(
+										modifyProficiency(currentVocab, false)
+									);
+								}}
 								color="error"
 							>
 								Bad
 							</Button>
 							<Button
 								variant="contained"
-								onClick={() => setGoodBadSelected(true)}
+								onClick={() => {
+									setGoodBadSelected(true);
+									dispatch(
+										modifyProficiency(currentVocab, true)
+									);
+								}}
 							>
 								Good
 							</Button>

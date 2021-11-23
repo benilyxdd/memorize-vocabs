@@ -19,7 +19,7 @@ interface removeVocabInterface extends Omit<actionInterface, 'payload'> {
 
 interface modifyProficiencyInterface extends Omit<actionInterface, 'payload'> {
 	payload: {
-		word: string;
+		word: VocabularyInterface;
 		plus: boolean;
 	};
 }
@@ -37,7 +37,7 @@ export const removeVocab = (word: string): removeVocabInterface => {
 };
 
 export const modifyProficiency = (
-	word: string,
+	word: VocabularyInterface,
 	plus: boolean
 ): modifyProficiencyInterface => {
 	return { type: MODIFY_PROFICIENCY, payload: { word, plus } };
