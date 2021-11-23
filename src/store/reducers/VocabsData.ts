@@ -54,7 +54,12 @@ const VocabsDataReducer = (
 				}),
 			};
 		default:
-			return state;
+			return {
+				...state,
+				VocabsList: state.VocabsList.sort((a, b) => {
+					return a.word > b.word ? 1 : -1;
+				}),
+			};
 	}
 };
 
