@@ -4,6 +4,7 @@ import { Tabs, Tab, Box, Typography } from "@mui/material";
 import "./TabsNavigator.css";
 import VocabsListView from "../../Pages/VocabsListView/VocabsListView";
 import VocabsLearnView from "../../Pages/VocabsLearnView/VocabsLearnView";
+import NotesView from "../../Pages/NotesView/NotesView";
 
 interface TabPanelProps {
 	children?: React.ReactNode;
@@ -52,6 +53,7 @@ const TabsNavigator = () => {
 				>
 					<Tab label="Study" {...a11yProps(0)}></Tab>
 					<Tab label="List" {...a11yProps(1)}></Tab>
+					<Tab label="Notes" {...a11yProps(2)}></Tab>
 				</Tabs>
 			</Box>
 
@@ -60,6 +62,9 @@ const TabsNavigator = () => {
 			</TabPanel>
 			<TabPanel value={value} index={1}>
 				<VocabsListView />
+			</TabPanel>
+			<TabPanel value={value} index={2}>
+				<NotesView />
 			</TabPanel>
 		</Box>
 	);
